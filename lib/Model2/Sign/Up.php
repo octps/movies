@@ -12,8 +12,18 @@
       $sth->bindValue(':password', sha1($password));
       $sth->execute();
       $dbh->commit();
- 
+
+      $to = 'toshinweb@gmail.com';
+      $from = "From:toshinweb@gmail.com";
+      $subject = '東伸企画テスト';
+      $bodyTextData = "テスト";
+
+      mb_language('Japanese');
+      mb_internal_encoding("UTF-8");
+      mb_send_mail($to, $subject, $bodyTextData, $from);
+
       // insert 完了
+      // mail送信 完了
       // insert user宛にメール送信
       // メールには認証用リンクを設定
       // メールにはone time passwordが記載されている
@@ -31,6 +41,7 @@
             * n日以上で、dbから削除
             
       // return $user;
+      */
     }
         
   }
