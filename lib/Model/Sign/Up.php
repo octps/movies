@@ -13,7 +13,7 @@
       $sth->execute();
       $dbh->commit();
 
-      $to = 'toshinweb@gmail.com';
+      $to = $email;
       $from = "From:toshinweb@gmail.com";
       $subject = '東伸企画テスト';
       $bodyTextData = "テスト";
@@ -24,7 +24,7 @@
 
       // insert 完了
       // mail送信 完了
-      // insert user宛にメール送信
+      // insert user宛にメール送信 完了
       // メールには認証用リンクを設定
       // メールにはone time passwordが記載されている
       // リンク先に飛び、one time passwordを入力することで認証完了
