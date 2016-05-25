@@ -13,10 +13,15 @@
       $sth->execute();
       $dbh->commit();
 
+      /*  
+      ## mamp mail
+      * http://origin8.info/blog/?p=211
+      */
+
       $to = $email;
       $from = "From:toshinweb@gmail.com";
       $subject = '東伸企画テスト';
-      $bodyTextData = "テスト";
+      $bodyTextData = 'go to <a href="http://localhost/auth">sign up</a>';
 
       mb_language('Japanese');
       mb_internal_encoding("UTF-8");
@@ -30,10 +35,14 @@
              * authカラムの作成 // 済み
              * authで権限を司る。 // 済み
              * onetime passwordカラムの作成 // 済み
-             * authが0の時はログインできない状態にする
-             * onetime passwordカラムを設定。onetime passwordがtrueだったら、authをtrueにする。
-             * auth = trueでなければ、ログインできない。auth dedault false; とする
-             * urlは固定。formは、メールアドレスとonetime password
+             * authが0の時はログインできない状態にする // 済み
+             * メール送信時にurlを渡す
+               * urlは固定。
+               * onetime_passwordを生成
+               * onetime_passwordをtableに保持
+               * メールの内容に、onetime_passwordを記載
+               * formは、ユーザー名とonetime password
+               * postの値を確認して、authの値を変更する
            * メールアドレスは3日程度で削除する
               * 登録日（created_at）とauthを確認し、3日追加しているものは、trueとできなくする
               * 定期的にcronでsqlを実行、deleteする。（将来的に）
