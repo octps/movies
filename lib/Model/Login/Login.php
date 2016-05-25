@@ -4,7 +4,7 @@
   class Login extends Model {
     public static function in($email, $password) {
       $dbh = \Db::getInstance();
-      $sql = "SELECT * FROM users where email = :email And password = :password";
+      $sql = "SELECT * FROM users where email = :email And password = :password And auth > 0";
       $dbh->beginTransaction();
       $sth = $dbh->prepare($sql);
       $sth->bindValue(':email', $email);

@@ -29,7 +29,8 @@
            * alter table
              * authカラムの作成 // 済み
              * authで権限を司る。 // 済み
-             * onetime passwordの作成
+             * onetime passwordカラムの作成 // 済み
+             * authが0の時はログインできない状態にする
              * onetime passwordカラムを設定。onetime passwordがtrueだったら、authをtrueにする。
              * auth = trueでなければ、ログインできない。auth dedault false; とする
              * urlは固定。formは、メールアドレスとonetime password
