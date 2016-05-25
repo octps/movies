@@ -18,11 +18,18 @@
       * http://origin8.info/blog/?p=211
       */
 
+      $str = array_merge(range('a', 'z'), range('0', '9'), range('A', 'Z'));
+      $onetime_password = null;
+      for ($i = 0; $i < 8; $i++) {
+        $onetime_password .= $str[rand(0, count($str) - 1)];
+      }
+
       $to = $email;
       $from = "From:toshinweb@gmail.com";
-      $subject = '東伸企画テスト';
-      $bodyTextData = 'go to <a href="http://localhost/auth">sign up</a>';
-
+      $subject = 'Sign up step';
+      $bodyTextData = 'go to <a href="http://localhost/auth">sign up</a><br />\n
+onetime password is ' . $onetime_password;
+      
       mb_language('Japanese');
       mb_internal_encoding("UTF-8");
       mb_send_mail($to, $subject, $bodyTextData, $from);
@@ -37,10 +44,10 @@
              * onetime passwordカラムの作成 // 済み
              * authが0の時はログインできない状態にする // 済み
              * メール送信時にurlを渡す
-               * urlは固定。
-               * onetime_passwordを生成
+               * urlは固定。 // 済み
+               * onetime_passwordを生成 // 済み
+               * メールの内容に、onetime_passwordを記載 // 済み
                * onetime_passwordをtableに保持
-               * メールの内容に、onetime_passwordを記載
                * formは、ユーザー名とonetime password
                * postの値を確認して、authの値を変更する
            * メールアドレスは3日程度で削除する
