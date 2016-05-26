@@ -1,5 +1,5 @@
 <?
-  
+  $get = (object)$_GET;
 ?>
 <html>
 <head>
@@ -12,6 +12,7 @@
 <h1>movie</h1>
 <div>
   <h2>sign up</h2>
+  <?= $get->error === 'duplicate' ? 'メールアドレスか名前の重複' :'' ?>
   <form action="/sign/up" method="post">
     <label>
       name : <input type="text" name="name" value="">

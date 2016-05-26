@@ -4,6 +4,32 @@
   class Sign extends Model {
     public static function up($name, $email, $password) {
       $dbh = \Db::getInstance();
+
+      // メールアドレスの重複確認
+      $sql = "SELECT * FROM users where email = :email";
+      $dbh->beginTransaction();
+      $sth = $dbh->prepare($sql);
+      $sth->bindValue(':email', $email);
+      $sth->execute();
+      $dbh->commit();
+      $user = $sth->fetchObject();
+      if ($user !== null) {
+        header('location:/sign/?error=duplicate');
+      }
+
+      // ユーザー名の重複確認
+      $sql = "SELECT * FROM users where name = :name";
+      $dbh->beginTransaction();
+      $sth = $dbh->prepare($sql);
+      $sth->bindValue(':name', $name);
+      $sth->execute();
+      $dbh->commit();
+      $user = $sth->fetchObject();
+      if ($user !== null) {
+        header('location:/sign/?error=duplicate');
+      }
+
+
       $sql = "INSERT INTO users (name, email, password, created_at) values(:name, :email, :password, null)";
       $dbh->beginTransaction();
       $sth = $dbh->prepare($sql);
@@ -47,6 +73,8 @@ onetime password is ' . $onetime_password;
                * urlは固定。 // 済み
                * onetime_passwordを生成 // 済み
                * メールの内容に、onetime_passwordを記載 // 済み
+               * mailとnameの重複を確認
+               * html mail作成
                * onetime_passwordをtableに保持
                * formは、ユーザー名とonetime password
                * postの値を確認して、authの値を変更する
