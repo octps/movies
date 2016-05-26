@@ -12,5 +12,6 @@
     && filter_var(h($post->email), FILTER_VALIDATE_EMAIL)
     && $post->password !== '') {
       Sign::up($post->name, h($post->email), h($post->password));
-
   }
+
+  header("Location: /sign/?error");
