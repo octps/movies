@@ -63,6 +63,7 @@ onetime password is ' . $onetime_password;
       mb_internal_encoding("UTF-8");
       mb_send_mail($to, $subject, $bodyTextData, $from);
 
+
       /* * insert 完了
          * mail送信 完了
          * insert user宛にメール送信 完了

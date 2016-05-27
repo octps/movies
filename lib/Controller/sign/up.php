@@ -14,4 +14,4 @@
       Sign::up($post->name, h($post->email), h($post->password));
   }
 
-  header("Location: /sign/?error");
+  header('location:/sign/notice');
