@@ -79,8 +79,8 @@ onetime password is ' . $onetime_password;
                * メールの内容に、onetime_passwordを記載 // 済み
                * mailとnameの重複を確認 // 済み
                * onetime_passwordをtableに保持 // 済み
-               * formは、ユーザー名とonetime password
-               * postの値を確認して、authの値を変更する
+               * formは、ユーザー名とonetime password//
+               * postの値を確認して、authの値を変更する//
                * html mail作成
            * メールアドレスは3日程度で削除する
               * 登録日（created_at）とauthを確認し、3日追加しているものは、trueとできなくする

@@ -1,5 +1,5 @@
 <?
-  require_once(dirname(__FILE__) . "/./lib/Controller/auth.php");
+  
 ?>
 <html>
 <head>
@@ -12,6 +12,15 @@
 <h1>movie</h1>
 <div>
   <h2>auth</h2>
+  <form action="/sign/auth" method="post">
+    <label>
+      name : <input type="text" name="name" value="">
+    </label>
+    <label>
+      one time password : <input type="password" name="onetime_password" value="">
+    </label>
+    <input type="submit" value="go">
+  </form>
 </div>
 </body>
 </html>
