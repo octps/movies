@@ -11,7 +11,9 @@
     && $post->name !== ''
     && filter_var(h($post->email), FILTER_VALIDATE_EMAIL)
     && $post->password !== '') {
-      Sign::up($post->name, h($post->email), h($post->password));
+      $sign = Sign::up($post->name, h($post->email), h($post->password));
   }
 
-  header('location:/sign/notice');
+  if ($sign !== false) {
+    header('location:/sign/notice');
+  }

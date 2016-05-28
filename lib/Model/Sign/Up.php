@@ -15,7 +15,7 @@
       $user = $sth->fetchObject();
       if ($user !== false) {
         header('location:/sign/?error=mail_duplicate');
-        return;
+        return false;
       }
 
       // ユーザー名の重複確認
@@ -28,7 +28,7 @@
       $user = $sth->fetchObject();
       if ($user !== false) {
         header('location:/sign/?error=name_duplicate');
-        return;
+        return false;
       }
 
       $str = array_merge(range('a', 'z'), range('0', '9'), range('A', 'Z'));
@@ -81,6 +81,7 @@ onetime password is ' . $onetime_password;
                * onetime_passwordをtableに保持 // 済み
                * formは、ユーザー名とonetime password//
                * postの値を確認して、authの値を変更する//
+               * authの値が変更されたら、sessionをセットして、user画面へとばす
                * html mail作成
            * メールアドレスは3日程度で削除する
               * 登録日（created_at）とauthを確認し、3日追加しているものは、trueとできなくする

@@ -3,6 +3,7 @@
   require_once(dirname(__FILE__) . "/../../Model/Sign/Auth.php");
   
   $post = (object)$_POST;
+  $auth = false;
   //varidate
   if (isset($post->name)
     && isset($post->onetime_password)
@@ -10,5 +11,12 @@
     && $post->onetime_password !== '') {
       $auth = Auth::check($post->name, h($post->onetime_password));
   }
+  if ($auth !== false) {
+    session_start();
+    $session = (object)$_SESSION;
+    $_SESSION["loginUser"] = $auth;
+    header('location:/user');
+    return;
+  }
 
-  header('location:/');
+  header('location:/auth');

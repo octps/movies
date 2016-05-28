@@ -15,9 +15,8 @@
       $user = $sth->fetchObject();
       if ($user === false) {
         header('location:/sign/auth');
-        return;
+        return false;
       }
-
 
       $sql = "UPDATE users set auth = 2 WHERE name = :name";
       $dbh->beginTransaction();
@@ -26,8 +25,7 @@
       $sth->execute();
       $dbh->commit();
 
-
-      return true;
+      return $name;
     }
         
   }
