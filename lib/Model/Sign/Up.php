@@ -54,14 +54,16 @@
 
 
       $to = $email;
-      $from = "From:toshinweb@gmail.com";
+      $headers  = 'MIME-Version: 1.0' . "\r\n";
+      $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+      $headers .= "From:toshinweb@gmail.com";
       $subject = 'Sign up step';
-      $bodyTextData = 'go to <a href="http://localhost/auth">sign up</a><br />\n
-onetime password is ' . $onetime_password;
+      $bodyTextData = 'go to <a href="http://localhost/auth">sign up</a><br />'. "\r\n" .
+"onetime password is " . $onetime_password;
       
       mb_language('Japanese');
       mb_internal_encoding("UTF-8");
-      mb_send_mail($to, $subject, $bodyTextData, $from);
+      mb_send_mail($to, $subject, $bodyTextData, $headers);
 
 
       /* * insert 完了
@@ -81,8 +83,8 @@ onetime password is ' . $onetime_password;
                * onetime_passwordをtableに保持 // 済み
                * formは、ユーザー名とonetime password//
                * postの値を確認して、authの値を変更する//
-               * authの値が変更されたら、sessionをセットして、user画面へとばす
-               * html mail作成
+               * authの値が変更されたら、sessionをセットして、user画面へ //
+               * html mail作成//
            * メールアドレスは3日程度で削除する
               * 登録日（created_at）とauthを確認し、3日追加しているものは、trueとできなくする
               * 定期的にcronでsqlを実行、deleteする。（将来的に）
