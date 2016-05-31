@@ -28,5 +28,27 @@
       return $contents;
     }
 
+    public static function post($name, $content) {
+      $dbh = \Db::getInstance();
+
+      $sql = "SELECT * FROM users where name = :name";
+      $dbh->beginTransaction();
+      $sth = $dbh->prepare($sql);
+      $sth->bindValue(':name', $name);
+      $sth->execute();
+      $dbh->commit();
+      $user = $sth->fetchObject();
+
+      $sql = "INSERT into contents (user_id, content, created_at) values (:user_id, :content, null);";
+      $dbh->beginTransaction();
+      $sth = $dbh->prepare($sql);
+      $sth->bindValue(':user_id', $user->id);
+      $sth->bindValue(':content', $content);
+      $sth->execute();
+      $dbh->commit();
+
+      header('location:/');
+    }
+
   }
 

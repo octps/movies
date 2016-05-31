@@ -9,14 +9,15 @@
       return Model_User::get($name);
     }
 
-    public static function post() {
-      print_r("post");
+    public static function post($name, $content) {
+      Model_User::post($name, $content);
     }
   }
 
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $contents = user::get($session->loginUser);
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    user::post();
+    $post = (object)$_POST;
+    user::post($session->loginUser, h($post->content));
   };
 

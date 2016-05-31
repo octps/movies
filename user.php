@@ -13,9 +13,8 @@
 <div>
   <h2>user: <?= $session->loginUser; ?></h2>
 </div>
-<form action="/user" method="post">
-	text : <input type="text" name="text" value="">
-  <input type="hidden" name="id" value="<?= $user->id; ?>">
+<form action="/user" method="post" accept-charset="UTF-8">
+	text : <input type="text" name="content" value="">
 	<input type="submit" value="登録">
 </form>
 <div class="contents">
