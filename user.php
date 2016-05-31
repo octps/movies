@@ -13,7 +13,7 @@
 <div>
   <h2>user: <?= $session->loginUser; ?></h2>
 </div>
-<form action="/user" method="post" accept-charset="UTF-8">
+<form action="/user" method="post">
 	text : <input type="text" name="content" value="">
 	<input type="submit" value="登録">
 </form>
@@ -26,6 +26,11 @@
 		<div class="text">
 			<?= $content->content ?>
 		</div>
+      <form action="/user" method="post">
+      <input type="hidden" name="method" value="DELETE">
+      <input type="hidden" name="id" value="<?= $session->userId ?>">
+      <input type="submit" value="削除">
+    </form>
 	</div>
 <? endforeach; ?>
 </div>

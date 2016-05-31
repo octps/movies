@@ -13,6 +13,7 @@
       if ($user !== false) {
         session_start();
         $_SESSION["loginUser"] = $user->name;
+        $_SESSION["userId"] = $user->id;
         header("Location: /user");
         return;
       }

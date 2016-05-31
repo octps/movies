@@ -5,19 +5,21 @@
   require_once(dirname(__FILE__) . "/../Model/User.php");
  
   class user {
-    public static function get($name) {
-      return Model_User::get($name);
+    public static function get($id) {
+      return Model_User::get($id);
     }
 
-    public static function post($name, $content) {
-      Model_User::post($name, $content);
+    public static function post($id, $content) {
+      Model_User::post($id, $content);
     }
   }
 
+  $post = (object)$_POST;
+
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $contents = user::get($session->loginUser);
+    $contents = user::get($session->userId);
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $post = (object)$_POST;
-    user::post($session->loginUser, h($post->content));
-  };
+    user::post($session->userId, h($post->content));
+  }
+
 
