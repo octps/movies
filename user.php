@@ -27,10 +27,10 @@
 			<?= $content->content ?>
 		</div>
       <form action="/user" method="post">
-      <input type="hidden" name="method" value="DELETE">
-      <input type="hidden" name="id" value="<?= $session->userId ?>">
-      <input type="submit" value="削除">
-    </form>
+	    <input type="hidden" name="method" value="DELETE">
+    	<input type="hidden" name="id" value="<?= $content->id ?>">
+        <input type="submit" value="削除">
+      </form>
 	</div>
 <? endforeach; ?>
 </div>

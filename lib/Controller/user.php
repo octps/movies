@@ -5,12 +5,28 @@
   require_once(dirname(__FILE__) . "/../Model/User.php");
  
   class user {
-    public static function get($id) {
-      return Model_User::get($id);
+    public static function get($userId) {
+      return Model_User::get($userId);
     }
 
-    public static function post($id, $content) {
-      Model_User::post($id, $content);
+    public static function post($userId, $content) {
+      $post = Model_User::post($userId, $content);
+      if ($post === true) {
+        header('location:/user');
+        return;
+      }
+      // todo modelでのtry catchを確認する
+      echo "post error";
+    }
+
+    public static function delete($id) {
+      $delete = Model_User::delete($id); 
+      if ($delete === true) {
+        header('location:/user');
+        return;        
+      }
+      // todo modelでのtry catchを確認する
+      echo "delete error";
     }
   }
 
@@ -18,8 +34,10 @@
 
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $contents = user::get($session->userId);
-  } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($post->method)) {
     user::post($session->userId, h($post->content));
+  } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && $post->method === "DELETE") {
+    user::delete($post->id);
   }
 
 
