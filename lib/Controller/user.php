@@ -3,10 +3,14 @@
   require_once(dirname(__FILE__) . "/./common.php");
   require_once(dirname(__FILE__) . "/./sessionCheck.php");
   require_once(dirname(__FILE__) . "/../Model/User.php");
+  require_once(dirname(__FILE__) . "/../Model/Follower.php");
  
   class user {
     public static function get($userId) {
-      return Model_User::get($userId);
+      $items = [];
+      $items['contents'] = Model_User::get($userId);
+      $items['followers'] = Model_follower::get($userId);
+      return (object)$items;
     }
 
     public static function post($userId, $content) {
@@ -33,7 +37,7 @@
   $post = (object)$_POST;
 
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $contents = user::get($session->userId);
+    $items = user::get($session->userId);
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($post->method)) {
     user::post($session->userId, h($post->content));
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && $post->method === "DELETE") {

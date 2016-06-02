@@ -18,7 +18,7 @@
 	<input type="submit" value="登録">
 </form>
 <div class="contents">
-<? foreach ((array)$contents as $content): ?>
+<? foreach ($items->contents as $content): ?>
 	<div class="contet">
 		<div class="datetime">
 			<?= $content->created_at ?>
@@ -32,6 +32,11 @@
         <input type="submit" value="削除">
       </form>
 	</div>
+<? endforeach; ?>
+</div>
+<div class="follower">
+<? foreach ($items->followers as $follower): ?>
+  <p>follow: <?= $follower->name ?></p>
 <? endforeach; ?>
 </div>
 <footer>
