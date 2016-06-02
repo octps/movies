@@ -14,7 +14,8 @@
   if ($auth !== false) {
     session_start();
     $session = (object)$_SESSION;
-    $_SESSION["loginUser"] = $auth;
+    $_SESSION["loginUser"] = $auth->name;
+    $_SESSION["userId"] = $auth->id;
     header('location:/user');
     return;
   }

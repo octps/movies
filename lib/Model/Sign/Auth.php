@@ -25,7 +25,7 @@
       $sth->execute();
       $dbh->commit();
 
-      return $name;
+      return $user;
     }
         
   }
