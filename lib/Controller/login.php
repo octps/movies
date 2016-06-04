@@ -14,7 +14,7 @@
         session_start();
         $_SESSION["loginUser"] = $user->name;
         $_SESSION["userId"] = $user->id;
-        header("Location: /user");
+        header("Location: /$user->name");
         return;
       }
       header("Location: /?error");

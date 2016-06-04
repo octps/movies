@@ -16,7 +16,7 @@
     $session = (object)$_SESSION;
     $_SESSION["loginUser"] = $auth->name;
     $_SESSION["userId"] = $auth->id;
-    header('location:/user');
+    header("location: /$auth->name");
     return;
   }
 
