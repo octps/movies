@@ -13,5 +13,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php
 
-# 404ファイル
-ErrorDocument 404 /404.php
+# ファイルがない場合に指定ファイルへ
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteRule . /lib/Controller/Existence.php [L]
+
