@@ -16,5 +16,5 @@ RewriteRule ^(.*)$ $1.php
 # ファイルがない場合に指定ファイルへ
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d 
-RewriteRule . /lib/Controller/Existence.php [L]
+RewriteRule . /lib/Controller/existence.php [L]
 
