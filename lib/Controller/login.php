@@ -8,7 +8,8 @@
   if (isset($post->email)
     && isset($post->password)
     && $post->password !== ''
-    && filter_var(h($post->email), FILTER_VALIDATE_EMAIL)) {
+    && filter_var(h($post->email), FILTER_VALIDATE_EMAIL)
+    && && preg_match("/^[a-zA-Z0-9]+$/", $post->name)) {
       $user = Login::in($post->email, h($post->password));
       if ($user !== false) {
         session_start();
