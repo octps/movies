@@ -15,9 +15,12 @@
   <?= @$get->error === 'mail_duplicate' ? 'メールアドレスの重複' :'' ?>
   <?= @$get->error === 'name_duplicate' ? '名前の重複' :'' ?>
   <form action="/sign/up" method="post">
+    <div>
     <label>
       name : <input type="text" name="name" value="">
     </label>
+    （nameは英数のみ）
+    </div>
     <label>
       E-mail : <input type="email" name="email" value="">
     </label>
