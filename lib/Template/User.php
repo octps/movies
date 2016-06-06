@@ -7,6 +7,10 @@
 </head>
 <body>
 <h1>template</h1>
+<?= $user->name ?>
+<fotter>
+<a href="/logout">logout</a>
+</fotter>
 </body>
 </html>
 
