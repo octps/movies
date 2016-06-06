@@ -6,8 +6,6 @@ require_once(dirname(__FILE__) . "/./sessionCheck.php");
 
 class existence {
 	public static function user ($session) {
-		//get Model
-		// $user = ['me'=>true,'you'=>true];
 		$user = Model_Existence::user($session->userId);
 
 		if ($user === false) {
