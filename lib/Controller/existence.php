@@ -3,6 +3,7 @@
 require_once(dirname(__FILE__) . "/../Model/Existence.php");
 require_once(dirname(__FILE__) . "/./common.php");
 require_once(dirname(__FILE__) . "/./sessionCheck.php");
+require_once(dirname(__FILE__) . "/./router.php");
 
 class existence {
 	public static function user ($session) {
@@ -10,20 +11,15 @@ class existence {
 
 		if ($user === false) {
 			header("location: /");
+			return;
 		}
-
-		require_once(dirname(__FILE__) . "/../Template/User.php");
-
-
-		// $url = $_SERVER["REQUEST_URI"];
-		// $access = ltrim($url, '/');
-
-		// if (isset($user[$access])) {
-		//   require_once(dirname(__FILE__) . "/../Template/User.php");
-		//   return;
+		$path = router::userCheck($user);
+		require_once(dirname(__FILE__) . "/../Template" . $path . ".php");
+		// if ($path === '/user') {
+		// 	require_once(dirname(__FILE__) . "/../Template/User.php");
+		// 	return;
 		// }
 
-		// require_once(dirname(__FILE__) . "/../Template/404.php");
 	}
 }
 

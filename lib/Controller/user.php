@@ -1,7 +1,7 @@
 <?
 
-  require_once(dirname(__FILE__) . "/./common.php");
-  require_once(dirname(__FILE__) . "/./sessionCheck.php");
+  // require_once(dirname(__FILE__) . "/./common.php");
+  // require_once(dirname(__FILE__) . "/./sessionCheck.php");
   require_once(dirname(__FILE__) . "/../Model/User.php");
   require_once(dirname(__FILE__) . "/../Model/Follower.php");
  
@@ -13,20 +13,20 @@
       return (object)$items;
     }
 
-    public static function post($userId, $content) {
+    public static function post($userId, $content,$session) {
       $post = Model_User::post($userId, $content);
       if ($post === true) {
-        header('location:/user');
+        header("location: /$session->loginUser");
         return;
       }
       // todo modelでのtry catchを確認する
       echo "post error";
     }
 
-    public static function delete($id) {
+    public static function delete($id, $session) {
       $delete = Model_User::delete($id); 
       if ($delete === true) {
-        header('location:/user');
+        header("location:/$session->loginUser");
         return;        
       }
       // todo modelでのtry catchを確認する
@@ -39,9 +39,9 @@
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $items = user::get($session->userId);
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($post->method)) {
-    user::post($session->userId, h($post->content));
+    user::post($session->userId, h($post->content), $session);
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && $post->method === "DELETE") {
-    user::delete($post->id);
+    user::delete($post->id, $session);
   }
 
 

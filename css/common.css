@@ -6,3 +6,11 @@ html, body {
 .follower {
   border-top: 1px solid #000;
 }
+
+header {
+	background: #9f9f9f;
+}
+
+footer {
+	background: #9f9f9f;
+}
