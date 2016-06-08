@@ -6,6 +6,8 @@ class router {
 		$uri = $_SERVER["REQUEST_URI"];
 		$uriArray = explode('/', $uri);
 
+		$path = $uri;
+
 		if ($uri === '/' . $user->name) {
 			$path = '/User';
 		} elseif (
@@ -15,10 +17,8 @@ class router {
 			)
 		{
 			$path = '/User/Id';
-		} else {
-			$path = '/404';
-		} 
-
+		};
+ 
 		return $path;
 	}
 }

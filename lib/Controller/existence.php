@@ -14,6 +14,11 @@ class existence {
 			return;
 		}
 		$path = router::userCheck($user);
+
+		if (file_exists(dirname(__FILE__) . "/../Template" . $path . ".php") === false) {
+			require_once(dirname(__FILE__) . "/../Template/404.php");
+			return;
+		}	
 		require_once(dirname(__FILE__) . "/../Template" . $path . ".php");
 		// if ($path === '/user') {
 		// 	require_once(dirname(__FILE__) . "/../Template/User.php");
