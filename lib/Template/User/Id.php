@@ -1,5 +1,5 @@
 <?
-  // require_once(dirname(__FILE__) . "/../Controller/user.php");
+  require_once(dirname(__FILE__) . "/../../Controller/user/id.php");
 ?>
 <html>
 <head>
@@ -13,7 +13,21 @@
 <h1>movie</h1>
 </header>
 <?= $user->name ?>
-<div>this is detail</div>
+<div class="contents">
+	<div class="contet">
+		<div class="datetime">
+			<?= $items->contents->created_at ?>
+		</div>
+		<div class="text">
+			<?= $items->contents->content ?>
+		</div>
+      <form action="/user" method="post">
+	    <input type="hidden" name="method" value="DELETE">
+    	<input type="hidden" name="id" value="<?= $items->contents->id ?>">
+        <input type="submit" value="削除">
+      </form>
+	</div>
+</div>
 <footer>
 <a href="/logout">logout</a>
 </footer>

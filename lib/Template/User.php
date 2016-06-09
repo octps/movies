@@ -26,6 +26,7 @@
 		<div class="text">
 			<?= $content->content ?>
 		</div>
+		<a href="/<?= $user->name ?>/<?= $content->id ?>">詳細</a>
       <form action="/user" method="post">
 	    <input type="hidden" name="method" value="DELETE">
     	<input type="hidden" name="id" value="<?= $content->id ?>">
