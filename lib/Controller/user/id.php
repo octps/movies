@@ -18,4 +18,7 @@
 
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $items = user_id::get($session->userId);
+    if ($items->contents === false) {
+      header("location: /404");
+    }
   }
