@@ -11,6 +11,7 @@
 <body>
 <header>
 <h1>movie</h1>
+<a href="/<?= $user->name ?>">home</a>
 </header>
 <?= $user->name ?>
 <div class="contents">

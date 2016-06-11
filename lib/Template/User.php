@@ -11,6 +11,9 @@
 <body>
 <header>
 <h1>movie</h1>
+<nav>
+<a href="/<?= $user->name ?>">home</a>
+<nav>
 </header>
 <?= $user->name ?>
 <form action="/user" method="post">
