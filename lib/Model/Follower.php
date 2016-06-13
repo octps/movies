@@ -8,7 +8,9 @@
       // todo try catch
       // 例外を投げる
       $followers = [];
-      $sql = "SELECT followers.*, users.name FROM followers join users on followers.follow_id = users.id WHERE user_id = :user_id";
+
+      $sql = "select * from followers join users on users.id = followers.follow_id where followers.user_id = :user_id";
+
       $dbh->beginTransaction();
       $sth = $dbh->prepare($sql);
       $sth->bindValue(':user_id', $userId);
