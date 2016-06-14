@@ -11,9 +11,12 @@
 <body>
 <header>
 <h1>movie</h1>
+<nav>
 <a href="/<?= $user->name ?>">home</a>
+</nav>
 </header>
-<?= $user->name ?>
+login user : <?= isset($session->loginUser) ? $session->loginUser : 'gest' ?><br />
+this place : <?= $user->name ?>
 <div class="contents">
 	<div class="contet">
 		<div class="datetime">

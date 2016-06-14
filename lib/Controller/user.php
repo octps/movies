@@ -35,7 +35,7 @@
   }
 
   $post = (object)$_POST;
-  $session = (object)$_SESSION;
+  $session = @(object)$_SESSION;
 
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $items = user::get($user->id);

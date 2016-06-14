@@ -15,12 +15,14 @@
 <a href="/<?= $user->name ?>">home</a>
 <nav>
 </header>
-login user : <?= $session->loginUser ?><br />
+login user : <?= isset($session->loginUser) ? $session->loginUser : 'gest' ?><br />
 this place : <?= $user->name ?>
+<? if (isset($session->loginUser)): ?>
 <form action="/user" method="post">
 	text : <input type="text" name="content" value="">
 	<input type="submit" value="登録">
 </form>
+<? endif; ?>
 <div class="contents">
 <? foreach ($items->contents as $content): ?>
 	<div class="contet">
@@ -45,7 +47,10 @@ this place : <?= $user->name ?>
 <? endforeach; ?>
 </div>
 <footer>
+<? if (isset($session->loginUser)): ?>
 <a href="/logout">logout</a>
+<? endif; ?>
+	<p>movie</p>
 </footer>
 </body>
 </html>

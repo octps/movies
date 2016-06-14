@@ -3,7 +3,7 @@
   require_once(dirname(__FILE__) . "/../Model.php");
   
   class Model_User_Id extends Model {
-    public static function get($id, $userId) {
+    public static function get($id) {
       $dbh = \Db::getInstance();
       // todo try catch
       // 例外を投げる
