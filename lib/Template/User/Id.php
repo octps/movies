@@ -15,7 +15,8 @@
 <a href="/<?= $user->name ?>">home</a>
 </nav>
 </header>
-login user : <?= isset($session->loginUser) ? $session->loginUser : 'gest' ?><br />
+
+login user : <?= isset($session->loginUser) ? $session->loginUser : 'guest' ?><br />
 this place : <?= $user->name ?>
 <div class="contents">
 	<div class="contet">

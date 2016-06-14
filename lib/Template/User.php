@@ -15,9 +15,9 @@
 <a href="/<?= $user->name ?>">home</a>
 <nav>
 </header>
-login user : <?= isset($session->loginUser) ? $session->loginUser : 'gest' ?><br />
+login user : <?= isset($session->loginUser) ? $session->loginUser : 'guest' ?><br />
 this place : <?= $user->name ?>
-<? if (isset($session->loginUser)): ?>
+<? if (isset($session->loginUser) && $session->loginUser === $user->name): ?>
 <form action="/user" method="post">
 	text : <input type="text" name="content" value="">
 	<input type="submit" value="登録">
