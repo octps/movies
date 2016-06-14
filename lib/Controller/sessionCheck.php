@@ -1,6 +1,7 @@
 <?  
   if (!isset($_COOKIE["PHPSESSID"])){
-      header("Location: /logout");
+  	$session_flag = false;
+      // header("Location: /logout");
   } else {
     session_start();
     $session = (object)$_SESSION;

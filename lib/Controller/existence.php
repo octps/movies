@@ -6,9 +6,10 @@ require_once(dirname(__FILE__) . "/./sessionCheck.php");
 require_once(dirname(__FILE__) . "/./router.php");
 
 class existence {
-	public static function user ($session) {
-		$user = Model_Existence::user($session->userId);
-
+	public static function user ($uri) {
+		$uri = ltrim($uri, '/');
+		$user = Model_Existence::user($uri);
+		// $user = Model_Existence::user($session->userId);
 		if ($user === false) {
 			header("location: /");
 			return;
@@ -28,4 +29,5 @@ class existence {
 	}
 }
 
-existence::user($session);
+$uri = $_SERVER["REQUEST_URI"];
+existence::user($uri);

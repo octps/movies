@@ -15,7 +15,8 @@
 <a href="/<?= $user->name ?>">home</a>
 <nav>
 </header>
-<?= $user->name ?>
+login user : <?= $session->loginUser ?><br />
+this place : <?= $user->name ?>
 <form action="/user" method="post">
 	text : <input type="text" name="content" value="">
 	<input type="submit" value="登録">

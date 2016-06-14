@@ -1,7 +1,7 @@
 <?
 
   // require_once(dirname(__FILE__) . "/./common.php");
-  // require_once(dirname(__FILE__) . "/./sessionCheck.php");
+  require_once(dirname(__FILE__) . "/./sessionCheck.php");
   require_once(dirname(__FILE__) . "/../Model/User.php");
   require_once(dirname(__FILE__) . "/../Model/Follower.php");
  
@@ -35,9 +35,10 @@
   }
 
   $post = (object)$_POST;
+  $session = (object)$_SESSION;
 
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $items = user::get($session->userId);
+    $items = user::get($user->id);
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($post->method)) {
     user::post($session->userId, h($post->content), $session);
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && $post->method === "DELETE") {
