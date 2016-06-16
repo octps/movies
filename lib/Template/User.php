@@ -18,7 +18,7 @@
 login user : <?= isset($session->loginUser) ? $session->loginUser : 'guest' ?><br />
 this place : <?= $user->name ?>
 <? if (isset($session->loginUser) && $session->loginUser === $user->name): ?>
-<form action="/user" method="post">
+<form action="/<?= $user->name ?>" method="post">
 	text : <input type="text" name="content" value="">
 	<input type="submit" value="登録">
 </form>
@@ -33,11 +33,13 @@ this place : <?= $user->name ?>
 			<?= $content->content ?>
 		</div>
 		<a href="/<?= $user->name ?>/<?= $content->id ?>">詳細</a>
-      <form action="/user" method="post">
+	<? if (isset($session->loginUser) && $session->loginUser === $user->name): ?>
+      <form action="/<?= $user->name ?>" method="post">
 	    <input type="hidden" name="method" value="DELETE">
     	<input type="hidden" name="id" value="<?= $content->id ?>">
         <input type="submit" value="削除">
       </form>
+	<? endif; ?>
 	</div>
 <? endforeach; ?>
 </div>

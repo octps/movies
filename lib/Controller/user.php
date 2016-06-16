@@ -13,8 +13,9 @@
       return (object)$items;
     }
 
-    public static function post($userId, $content,$session) {
+    public static function post($userId, $content, $session) {
       $post = Model_User::post($userId, $content);
+
       if ($post === true) {
         header("location: /$session->loginUser");
         return;
