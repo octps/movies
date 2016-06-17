@@ -20,6 +20,10 @@ this place : <?= $user->name ?>
 <? if (isset($session->loginUser) && $session->loginUser === $user->name): ?>
 <form action="/<?= $user->name ?>" method="post">
 	text : <input type="text" name="content" value="">
+	<select name="state">
+		<option value="me">only me</option>
+		<option value="public">public</option>
+	</select>
 	<input type="submit" value="登録">
 </form>
 <? endif; ?>

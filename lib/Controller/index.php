@@ -1,7 +1,7 @@
 <?
   if (isset($_COOKIE["PHPSESSID"])){
-    session_start();
-    header('location: /user');
+  	// $session_flag = false;
+   //  header('location: /user');
   }
   if (isset($_GET['error'])) {
     $error = true;
