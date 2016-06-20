@@ -21,20 +21,24 @@ this place : <?= $user->name ?>
 <form action="/<?= $user->name ?>" method="post">
 	text : <input type="text" name="content" value="">
 	<select name="state">
-		<option value="me">only me</option>
-		<option value="public">public</option>
+		<option value="100">only me</option>
+		<option value="0">public</option>
 	</select>
 	<input type="submit" value="登録">
 </form>
 <? endif; ?>
 <div class="contents">
 <? foreach ($items->contents as $content): ?>
+	<? if ($items->session_state >= $content->state): ?>
 	<div class="contet">
 		<div class="datetime">
 			<?= $content->created_at ?>
 		</div>
 		<div class="text">
 			<?= $content->content ?>
+		</div>
+		<div class="state">
+			<?= $content->state ?>
 		</div>
 		<a href="/<?= $user->name ?>/<?= $content->id ?>">詳細</a>
 	<? if (isset($session->loginUser) && $session->loginUser === $user->name): ?>
@@ -44,6 +48,7 @@ this place : <?= $user->name ?>
         <input type="submit" value="削除">
       </form>
 	<? endif; ?>
+	<? endif ?>
 	</div>
 <? endforeach; ?>
 </div>

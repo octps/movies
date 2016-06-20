@@ -21,15 +21,16 @@
       return $contents;
     }
 
-    public static function post($userId, $content) {
+    public static function post($userId, $post) {
       $dbh = \Db::getInstance();
       // todo try catch
       // 例外を投げる
-      $sql = "INSERT into contents (user_id, content, created_at) values (:user_id, :content, null);";
+      $sql = "INSERT into contents (user_id, content, state, created_at) values (:user_id, :content, :state, null);";
       $dbh->beginTransaction();
       $sth = $dbh->prepare($sql);
       $sth->bindValue(':user_id', $userId);
-      $sth->bindValue(':content', $content);
+      $sth->bindValue(':state', $post->state);
+      $sth->bindValue(':content', $post->content);
       $sth->execute();
       $dbh->commit();
 
